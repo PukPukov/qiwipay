@@ -1,0 +1,26 @@
+Messages:
+  Status:
+    Paid: "&6&lQiwiPay&7 >> &fТы успешно пополнил баланс"
+    Waiting: "&6&lQiwiPay&7 >> &fСчет в ожидании оплаты"
+    Rejected: "&6&lQiwiPay&7 >> &fПлатёж отклонен."
+    Expired: "&6&lQiwiPay&7 >> &fПлатёж просрочен."
+  Another:
+    Reloaded: "&6&lQiwiPay&7 >> &6Конфиг перезагружен"
+    NoPerm: "&6&lQiwiPay&7 >> &fУвас недостаточно прав."
+    NoBill: "&6&lQiwiPay&7 >> &fУ вас нет активных платежей."
+    BillRejected: "&6&lQiwiPay&7 >> &fСчёт успешно аннулирован."
+    ActiveBill: "&6&lQiwiPay&7 >> &fУ вас уже есть неоплаченный счет. Для отмены введите: &d/dn reject"
+    ArgError: "&6&lQiwiPay&7 >> &fВведите целое число в конце. Пример: &d/dn generate &350"
+  Json:
+    Message: "&6Для пополнения баланса "
+    Message2: "&6После того, как переведёшь средства, введи &9/dn check"
+    Message3: "&5-----------------------------------------------------"
+    ActionMessage: "&b&nнажми на меня"
+  balance:
+    playerBalance: "&fУ тебя на счету &6"
+    playerBalance2: "&f₽"
+  Help:
+    - "&6Помощь по пополению баланса на сервере"
+    - "&8|  &6Пополнить баланс - &9/dn pay &7<Сумма>"
+    - "&8|  &6Проверить оплату - &9/dn check"
+    - "&8|  &6Отклонить счёт - &9/dn reject"

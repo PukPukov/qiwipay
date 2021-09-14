@@ -1,0 +1,7 @@
+name: QiwiPay
+version: 1.0
+main: QiwiPay.EdenPay
+authors: [PukPukov, moskovroma, Riku]
+commands:
+  donate:
+    aliases: [dn]
