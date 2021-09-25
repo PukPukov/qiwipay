@@ -1,5 +1,6 @@
 package AncapPay;
 
+import AncapPay.Metrics;
 import AncapPay.Configurations.MessagesConfiguration;
 import AncapPay.Configurations.DataBaseCore;
 import AncapPay.Configurations.MainConfiguration;
@@ -23,17 +24,19 @@ public final class main extends JavaPlugin
         if (!this.getDataFolder().exists()) {
             this.getDataFolder().mkdir();
         }
-        saveDefaultConfig();
         main.instance = this;
         MainConfiguration.getMain().setUp();
         DataBaseCore.getDataBase().setUp();
         MessagesConfiguration.getMessages().setUp();
         reloadToken();
         this.getCommand("donate").setExecutor(new QiwiCommands());
+        int pluginId = 12879;
+        Metrics metrics = new Metrics(this, pluginId);
     }
 
     public void onDisable() {
         this.getLogger().info("QiwiPay disabled.");
+        DataBaseCore.getDataBase().saveConfig();
     }
 
     public static void reloadToken() {

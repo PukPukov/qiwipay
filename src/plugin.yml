@@ -1,6 +1,6 @@
 name: QiwiPay
 version: 1.0
-main: QiwiPay.EdenPay
+main: AncapPay.main
 authors: [PukPukov, moskovroma, Riku]
 commands:
   donate:

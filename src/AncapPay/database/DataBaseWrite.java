@@ -12,9 +12,7 @@ public class DataBaseWrite
         if (DataBaseCore.getDataBase().getConfig().getConfigurationSection("QiwiPay.Players." + p.getName()) == null) {
             setNewPlayer(p, amount);
         }
-        else {
-            writeConf(p, amount);
-        }
+        writeConf(p, amount);
     }
 
     public static void setNewPlayer(final Player p, final int amount) {

@@ -28,12 +28,12 @@ public class QiwiCommands implements CommandExecutor
                         MainConfiguration.getMain().reloadConfig();
                         MessagesConfiguration.getMessages().reloadConfig();
                         main.reloadToken();
-                        UsefulFunctions.sendMessage(p, "Messages.Another.Reloaded");
+                        UsefulFunctions.sendUsefulMessage(p, "Messages.Another.Reloaded");
                         UsefulFunctions.sendLog("&6Конфиг перезагружен");
                         UsefulFunctions.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
                         break;
                     }
-                    UsefulFunctions.sendMessage(p, "Messages.Another.NoPerm");
+                    UsefulFunctions.sendUsefulMessage(p, "Messages.Another.NoPerm");
                     UsefulFunctions.playSound(p, Sound.BLOCK_ANVIL_PLACE);
                     break;
                 }
@@ -44,7 +44,7 @@ public class QiwiCommands implements CommandExecutor
                         UsefulFunctions.playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
                         break;
                     }
-                    UsefulFunctions.sendMessage(p, "Messages.Another.ArgError");
+                    UsefulFunctions.sendUsefulMessage(p, "Messages.Another.ArgError");
                     break;
                 }
                 case "check": {
@@ -52,19 +52,19 @@ public class QiwiCommands implements CommandExecutor
                         QiwiModule.checkBill(p);
                         break;
                     }
-                    UsefulFunctions.sendMessage(p, "Messages.Another.NoBill");
+                    UsefulFunctions.sendUsefulMessage(p, "Messages.Another.NoBill");
                     UsefulFunctions.playSound(p, Sound.BLOCK_ANVIL_PLACE);
                     break;
                 }
                 case "reject": {
                     if (QiwiModule.getClients().containsKey(p.getUniqueId())) {
                         QiwiModule.getClients().remove(p.getUniqueId());
-                        UsefulFunctions.sendMessage(p, "Messages.Another.BillRejected");
+                        UsefulFunctions.sendUsefulMessage(p, "Messages.Another.BillRejected");
                         UsefulFunctions.sendLog("&d" + p.getName() + " &6отменил оплату");
                         UsefulFunctions.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
                         break;
                     }
-                    UsefulFunctions.sendMessage(p, "Messages.Another.NoBill");
+                    UsefulFunctions.sendUsefulMessage(p, "Messages.Another.NoBill");
                     UsefulFunctions.playSound(p, Sound.BLOCK_ANVIL_PLACE);
                     break;
                 }

@@ -14,13 +14,13 @@ public class UsefulFunctions {
         return ChatColor.translateAlternateColorCodes('&', mes);
     }
 
-    public static void sendMessage(Player p, String path) {
+    public static void sendUsefulMessage(Player p, String path) {
         String messages = MessagesConfiguration.getMessages().getConfig().getString(path);
         p.sendMessage(color(messages));
     }
 
     public static void sendLog(String log) {
-        Logger.getLogger("AncapPay").info(color(log));
+        Logger.getLogger("QiwiPay").info(color(log));
     }
 
     public static void playSound(Player p, Sound sound) {
