@@ -45,11 +45,6 @@ public class DataBaseCore
         return this.cfg;
     }
 
-    public void toCfg(final int a) {
-        this.getConfig().set("var", a);
-        this.saveConfig();
-    }
-
     public void saveConfig() {
         try {
             this.getConfig().save(this.cfgFile);

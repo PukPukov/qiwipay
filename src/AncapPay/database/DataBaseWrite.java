@@ -13,13 +13,15 @@ public class DataBaseWrite
             setNewPlayer(p, amount);
         }
         writeConf(p, amount);
+        DataBaseCore.getDataBase().saveConfig();
     }
 
     public static void setNewPlayer(final Player p, final int amount) {
         DataBaseCore.getDataBase().getConfig().createSection("QiwiPay.Players." + p.getName());
         DataBaseCore.getDataBase().getConfig().createSection("QiwiPay.Players." + p.getName() + ".AmountAll");
         DataBaseCore.getDataBase().getConfig().createSection("QiwiPay.Players." + p.getName() + ".Donate");
-        DataBaseCore.getDataBase().getConfig().set("QiwiPay.Player." + p.getName() + ".AmountAll", 0);
+        DataBaseCore.getDataBase().getConfig().set("QiwiPay.Players." + p.getName() + ".AmountAll", 0);
+        DataBaseCore.getDataBase().saveConfig();
     }
 
     public static void writeConf(final Player p, final int amount) {

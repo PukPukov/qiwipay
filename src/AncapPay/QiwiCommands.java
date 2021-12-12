@@ -1,5 +1,6 @@
 package AncapPay;
 
+import AncapPay.Configurations.DataBaseCore;
 import AncapPay.Utils.QiwiModule;
 import org.bukkit.Sound;
 import AncapPay.Configurations.MainConfiguration;
@@ -13,7 +14,7 @@ import org.bukkit.command.CommandExecutor;
 public class QiwiCommands implements CommandExecutor
 {
     public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
-        if (sender instanceof Player) {
+        if (true) {
             final Player p = (Player)sender;
             if (args.length == 0) {
                 for (final String s : MessagesConfiguration.getMessages().getConfig().getStringList("Messages.Help")) {
@@ -28,23 +29,23 @@ public class QiwiCommands implements CommandExecutor
                         MainConfiguration.getMain().reloadConfig();
                         MessagesConfiguration.getMessages().reloadConfig();
                         main.reloadToken();
-                        UsefulFunctions.sendUsefulMessage(p, "Messages.Another.Reloaded");
+                        UsefulFunctions.sendMessage(p, "Messages.Another.Reloaded");
                         UsefulFunctions.sendLog("&6Конфиг перезагружен");
                         UsefulFunctions.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
                         break;
                     }
-                    UsefulFunctions.sendUsefulMessage(p, "Messages.Another.NoPerm");
+                    UsefulFunctions.sendMessage(p, "Messages.Another.NoPerm");
                     UsefulFunctions.playSound(p, Sound.BLOCK_ANVIL_PLACE);
                     break;
                 }
                 case "pay": {
-                    if (args.length != 1 || isNumeric(args[1])) {
-                        QiwiModule.generateBill(p, Integer.parseInt(args[1]));
-                        UsefulFunctions.sendLog("&d" + p.getName() + " &6создал ссылку на оплату &d" + args[1]);
-                        UsefulFunctions.playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
-                        break;
+                    if (args.length != 2 || !isNumeric(args[1])) {
+                        UsefulFunctions.sendMessage(p, "Messages.Another.ArgError");
+                        return true;
                     }
-                    UsefulFunctions.sendUsefulMessage(p, "Messages.Another.ArgError");
+                    QiwiModule.generateBill(p, Integer.parseInt(args[1]));
+                    UsefulFunctions.sendLog(UsefulFunctions.config("messages","Messages.Console.PayLink", p, Integer.parseInt(args[1])));
+                    UsefulFunctions.playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
                     break;
                 }
                 case "check": {
@@ -52,46 +53,30 @@ public class QiwiCommands implements CommandExecutor
                         QiwiModule.checkBill(p);
                         break;
                     }
-                    UsefulFunctions.sendUsefulMessage(p, "Messages.Another.NoBill");
+                    UsefulFunctions.sendMessage(p, "Messages.Another.NoBill");
                     UsefulFunctions.playSound(p, Sound.BLOCK_ANVIL_PLACE);
                     break;
                 }
                 case "reject": {
                     if (QiwiModule.getClients().containsKey(p.getUniqueId())) {
                         QiwiModule.getClients().remove(p.getUniqueId());
-                        UsefulFunctions.sendUsefulMessage(p, "Messages.Another.BillRejected");
-                        UsefulFunctions.sendLog("&d" + p.getName() + " &6отменил оплату");
+                        UsefulFunctions.sendMessage(p, "Messages.Another.BillRejected");
+                        UsefulFunctions.sendLog(UsefulFunctions.config("messages","Messages.Console.RejectLink", p, 0));
                         UsefulFunctions.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
                         break;
                     }
-                    UsefulFunctions.sendUsefulMessage(p, "Messages.Another.NoBill");
+                    UsefulFunctions.sendMessage(p, "Messages.Another.NoBill");
                     UsefulFunctions.playSound(p, Sound.BLOCK_ANVIL_PLACE);
                     break;
                 }
                 default: {
-                    p.sendMessage(UsefulFunctions.color("&cОшибка аргумента!"));
+                    p.sendMessage(UsefulFunctions.config("messages","Messages.Another.NoArg", p, 0));
                     for (final String s2 : MessagesConfiguration.getMessages().getConfig().getStringList("Messages.Help")) {
                         p.sendMessage(UsefulFunctions.color(s2));
                     }
                     UsefulFunctions.playSound(p, Sound.BLOCK_ANVIL_PLACE);
                     break;
                 }
-            }
-        }
-        else if (args[0] != null) {
-            if (args[0].toLowerCase().equals("reload")) {
-                MainConfiguration.getMain().reloadConfig();
-                MessagesConfiguration.getMessages().reloadConfig();
-                main.reloadToken();
-                UsefulFunctions.sendLog("&6Конфиг перезагружен");
-            }
-            else {
-                sender.sendMessage("Не для консоли.");
-            }
-        }
-        else {
-            for (final String s3 : MessagesConfiguration.getMessages().getConfig().getStringList("Messages.Help")) {
-                sender.sendMessage(UsefulFunctions.color(s3));
             }
         }
         return false;

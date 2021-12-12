@@ -9,13 +9,10 @@ QiwiPay:
     # Например /money give %player% %amount%
     # Тут встроенные плайсхолдеры - плагин PlaceholderAPI в след версиях добавлю)
     # %player% - игрок, который задонатил, %amount% - сколько задонатил
-    Command: "money give %player% %amount%"
+    Command: "ancapdonates:bal give %player% %amount%"
 
     # Перенаправляет после оплаты сюда
     Site: ""
-
-    # Ну имя сервера - понятно все, указывается в форме оплаты
-    ServerName: ""
 
     # Параметры требуемые для формирования оплаты
     #Телефон вводить без "8" и "+": 79987894554
